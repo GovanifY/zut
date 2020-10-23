@@ -86,7 +86,7 @@ zut operator>>(int s){
     return res;
 }
 
-// i don't think this can be made faster :p
+// i don't think this can be made faster without arch specific code :p
 // in a z/2z field 1+1=0 and 1+0 = 1, thus it's a simple xor
 // also i guess you know if you are reading this code but substraction =
 // addition in Z/2Z so this can be(and is, ie in division) used interchangeably
@@ -327,11 +327,8 @@ vector<zut> sff(vector<zut> factors={}) {
 }
 
 /*
- * Honestly I was about to write a whole paragraph on how this works but,
- * honestly, wikipedia is a much better resource than me for that. I separated
- * and commented briefly each subsection of the algorithm. It's not _that_
- * complex plus, honestly, I have no idea who I'd write that for, as I'm sure
- * you already knew about that before making this problem.
+ * Berlekamp algorithm in all its glory, along with a baked in matrix reduced
+ * echelon form transformation.
  */
 vector<zut> bk(){
     // first create the matrix Q-I
